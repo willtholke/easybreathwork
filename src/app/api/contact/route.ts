@@ -57,7 +57,7 @@ export async function POST(request: Request) {
       from,
       to: [to],
       replyTo: email,
-      subject: `[Easy Breathwork] ${subject}`,
+      subject: `[Inquiry on easybreathwork.com] ${subject}`,
       text: [
         `Name: ${firstName} ${lastName}`,
         `Email: ${email}`,
