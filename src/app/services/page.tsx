@@ -1,9 +1,12 @@
-import type { Metadata } from "next";
 import { ContactCta } from "@/components/ContactCta";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Services",
-};
+  description:
+    "Corporate and group Easy Breathwork™ training, 1:1 and couples sessions, and multi-modality breath, soma, and energy healing with Tamara Edwards.",
+  path: "/services",
+});
 
 export default function ServicesPage() {
   return (

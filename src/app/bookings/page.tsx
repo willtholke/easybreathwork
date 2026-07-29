@@ -1,11 +1,15 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import { ContactCta } from "@/components/ContactCta";
+import { createPageMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Bookings",
-};
+  description:
+    "Contact Tamara to book Easy Breathwork™ 1:1 or couples sessions (in person or remote) and Tuesday online intro classes. Email info@easybreathwork.com or text +1 323 532 9251.",
+  path: "/bookings",
+  image: "/images/session.webp",
+});
 
 export default function BookingsPage() {
   return (

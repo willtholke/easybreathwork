@@ -24,13 +24,6 @@ export function ContactForm({
     if (next) setSubject(next);
   }, [subjectFromQuery, defaultSubject]);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (window.location.hash === "#contact") {
-      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [subjectFromQuery]);
-
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("loading");

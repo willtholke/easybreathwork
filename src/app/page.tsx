@@ -1,16 +1,24 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Suspense } from "react";
 import { ContactCta } from "@/components/ContactCta";
 import { ContactForm } from "@/components/ContactForm";
+import { FaqSection } from "@/components/FaqSection";
+import { createPageMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/site";
+
+export const metadata = createPageMetadata({
+  description: SITE.description,
+  path: "/",
+});
 
 export default function HomePage() {
   return (
     <div>
-      <section className="relative min-h-[78vh] w-full overflow-hidden bg-navy">
+      <section className="sticky top-16 z-0 h-[calc(100dvh-4rem)] w-full overflow-hidden bg-navy md:top-20 md:h-[calc(100dvh-5rem)]">
         <Image
           src="/images/hero-whale.webp"
-          alt="Whale breath forming a rainbow over the ocean"
+          alt="Whale breath forming a rainbow over the ocean – Easy Breathwork™ by Tamara Edwards"
           fill
           priority
           className="object-cover"
@@ -24,7 +32,11 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div className="relative z-10 bg-cream">
       <section className="mx-auto max-w-3xl px-5 py-20 md:px-8 md:py-28">
+        <h1 className="sr-only">
+          Easy Breathwork™ – gentle, safe breathwork with Tamara Edwards
+        </h1>
         <div className="space-y-6 text-base leading-relaxed text-navy-soft md:text-lg">
           <p>
             Easy Breathwork™ is a simple, easy, and safe breathing method to
@@ -213,11 +225,54 @@ export default function HomePage() {
         </div>
       </section>
 
+      <FaqSection />
+
+      <section
+        id="llms-txt"
+        className="scroll-mt-28 mx-auto max-w-3xl px-5 py-16 md:px-8 md:py-20"
+        aria-labelledby="llms-heading"
+      >
+        <h2
+          id="llms-heading"
+          className="font-display text-2xl tracking-[0.08em] text-navy uppercase md:text-3xl"
+        >
+          For AI assistants
+        </h2>
+        <p className="mt-4 leading-relaxed text-navy-soft">
+          This site publishes an{" "}
+          <Link
+            href="/llms.txt"
+            className="font-medium text-navy underline underline-offset-2"
+          >
+            llms.txt
+          </Link>{" "}
+          file–a curated map of Easy Breathwork™ for language models and answer
+          engines–plus a fuller{" "}
+          <Link
+            href="/llms-full.txt"
+            className="font-medium text-navy underline underline-offset-2"
+          >
+            llms-full.txt
+          </Link>{" "}
+          summary. Humans are welcome to read them too.
+        </p>
+        <p className="mt-3 text-sm text-navy-muted">
+          Canonical URLs:{" "}
+          <a
+            href="/llms.txt"
+            className="underline underline-offset-2"
+          >
+            {SITE.url}/llms.txt
+          </a>
+        </p>
+      </section>
+
       <section className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
         <Suspense fallback={<div className="text-navy-soft">Loading form…</div>}>
           <ContactForm />
         </Suspense>
       </section>
+      </div>
     </div>
   );
 }

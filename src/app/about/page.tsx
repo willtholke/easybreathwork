@@ -1,10 +1,14 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import { ContactCta } from "@/components/ContactCta";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "About",
-};
+  description:
+    "A statement from founder Tamara Edwards on why she created Easy Breathwork™–a gentle, empowering breath practice after years of seeking safer ways to heal.",
+  path: "/about",
+  image: "/images/about-portrait.webp",
+});
 
 export default function AboutPage() {
   return (

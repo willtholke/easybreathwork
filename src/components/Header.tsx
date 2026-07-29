@@ -13,7 +13,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-cream/95 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3 md:px-8 md:py-4">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 md:h-20 md:px-8">
         <Link href="/" className="flex shrink-0 items-center" onClick={() => setOpen(false)}>
           <Image
             src="/images/logo.webp"

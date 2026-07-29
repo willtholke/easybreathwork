@@ -1,58 +1,16 @@
-import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { ContactCta } from "@/components/ContactCta";
+import { LIVE_EVENTS, getEventPath } from "@/lib/events";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Live Events",
-};
-
-const events = [
-  {
-    title: "A Heart Happening: A monthly series attuned to the seasons",
-    date: "Sunday, August 6, 2023",
-    time: "10:00 AM – 12:00 PM",
-    location: "Outside in nature in Marin (Tiburon or Mill Valley)",
-    image: "/images/event-heart.webp",
-    summary:
-      "Harness the abundant energies of summer as Tamara Edwards guides you through Easy Breathwork™ with cacao, sound therapy, and somatic integration. Cacao opens the heart; circular breath unwinds stress and restores well-being; somatic integration with sound helps the body land.",
-  },
-  {
-    title: "Solstice Ceremony",
-    date: "Saturday, June 17, 2023",
-    time: "4:00 PM – 6:00 PM",
-    location: "Mountain top in Marin",
-    image: "/images/event-solstice.webp",
-    summary:
-      "Ceremony and celebration to honor the Summer Solstice. All ages and genders welcome. Hearts open through cacao, Easy Breathwork™, sound healing, music, and somatic release. Pricing was $40; youth 10–18 $15; children 10 & under free.",
-  },
-  {
-    title: "SUPER BLOOM: Blossom into your own nature",
-    date: "Saturday, May 20, 2023",
-    time: "4:00 PM – 6:00 PM",
-    location: "Marin County",
-    image: "/images/event-bloom.webp",
-    summary:
-      "Part of the monthly seasonal series. A complete somatic experience to leave you lighter, clear, centered, and inspired–with simple practices to continue at home.",
-  },
-  {
-    title: "Spring Renewal: Easy Breathwork, cacao, somatic integration",
-    date: "Saturday, April 15, 2023",
-    time: "4:00 PM – 6:00 PM",
-    location: "Mill Valley, CA",
-    image: "/images/event-spring.webp",
-    summary:
-      "Welcome the new energies of spring through Easy Breathwork with cacao, sound therapy, and somatic integration.",
-  },
-  {
-    title: "Breathe Easy: Breathwork & Cacao",
-    date: "Sunday, August 7, 2022",
-    time: "6:00 PM – 8:00 PM",
-    location: "The New Paradome Farm",
-    image: "/images/event-breathe.webp",
-    summary:
-      "An offering rooted in years cultivating relationship with cacao in Costa Rica and healing through breathwork practice. Leave feeling in your body, calm in the mind, and inspired for the week ahead.",
-  },
-];
+  description:
+    "Seasonal Easy Breathwork™ live events in Marin County with cacao, sound therapy, and somatic integration. Inquire about upcoming gatherings.",
+  path: "/live-events",
+  image: "/images/event-heart.webp",
+});
 
 export default function LiveEventsPage() {
   return (
@@ -78,23 +36,31 @@ export default function LiveEventsPage() {
       </h2>
 
       <div className="mt-10 space-y-16">
-        {events.map((event) => (
+        {LIVE_EVENTS.map((event) => (
           <article
-            key={event.title}
+            key={event.slug}
             className="grid gap-8 border-b border-line pb-16 md:grid-cols-[280px_1fr] last:border-0"
           >
-            <div className="relative aspect-[4/5] overflow-hidden rounded-xl md:aspect-square">
+            <Link
+              href={getEventPath(event.slug)}
+              className="relative aspect-[4/5] overflow-hidden rounded-xl md:aspect-square"
+            >
               <Image
                 src={event.image}
                 alt={event.title}
                 fill
-                className="object-cover"
+                className="object-cover transition duration-300 hover:scale-[1.02]"
                 sizes="(max-width: 768px) 100vw, 280px"
               />
-            </div>
+            </Link>
             <div>
               <h3 className="text-xl font-semibold text-navy md:text-2xl">
-                {event.title}
+                <Link
+                  href={getEventPath(event.slug)}
+                  className="hover:opacity-80"
+                >
+                  {event.title}
+                </Link>
               </h3>
               <ul className="mt-4 space-y-1 text-sm text-navy-muted">
                 <li>{event.date}</li>
@@ -104,6 +70,12 @@ export default function LiveEventsPage() {
               <p className="mt-5 leading-relaxed text-navy-soft">
                 {event.summary}
               </p>
+              <Link
+                href={getEventPath(event.slug)}
+                className="mt-5 inline-block text-sm font-medium text-navy underline underline-offset-2"
+              >
+                View event details
+              </Link>
             </div>
           </article>
         ))}

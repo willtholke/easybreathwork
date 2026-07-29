@@ -10,8 +10,8 @@ export function Footer() {
             Easy Breathwork™
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-navy-soft">
-            Join our email list for class updates, Easy Tips, new events,
-            resources, and all things related to breath. Email{" "}
+            Gentle, safe breathwork with Tamara Edwards–sessions, classes,
+            corporate training, and live events. Email{" "}
             <a
               href={SITE.emailHref}
               className="underline underline-offset-2 hover:opacity-70"
@@ -39,6 +39,15 @@ export function Footer() {
           </a>
           <Link href="/#contact" className="hover:text-navy">
             Contact
+          </Link>
+          <Link href="/#faq" className="hover:text-navy">
+            FAQ
+          </Link>
+          <Link href="/llms.txt" className="hover:text-navy">
+            llms.txt
+          </Link>
+          <Link href="/sitemap.xml" className="hover:text-navy">
+            Sitemap
           </Link>
         </div>
       </div>
