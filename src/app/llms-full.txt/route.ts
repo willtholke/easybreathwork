@@ -44,7 +44,7 @@ Weekly group class on Tuesdays, 6:00–6:45pm PT via Zoom. About $30 per class; 
 Page: ${absoluteUrl("/bookings")}
 
 ### Corporate and group training
-Remote and in-person programs for medical staff, health practitioners, facilitators, therapists, and companies. Custom length, frequency, and focus. Partners have included Beond, Califia, Mountain, Paradigm Talent Agency, Gobbler, and Nue.Life.
+Remote and in-person programs for medical staff, health practitioners, facilitators, therapists, and companies. Custom length, frequency, and focus. Clients have included Beond, Califia, Mountain, Paradigm Talent Agency, Gobbler, and Nue.Life.
 Page: ${absoluteUrl("/services")}
 
 ### Multi-modality healing sessions

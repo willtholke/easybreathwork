@@ -37,6 +37,12 @@ export function Footer() {
           >
             Instagram
           </a>
+          <Link href="/locations" className="hover:text-navy">
+            Locations
+          </Link>
+          <Link href="/corporate" className="hover:text-navy">
+            Corporate
+          </Link>
           <Link href="/#contact" className="hover:text-navy">
             Contact
           </Link>

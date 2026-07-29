@@ -1,6 +1,13 @@
+"use client";
+
+import { ChevronDown } from "lucide-react";
+import { useId, useState } from "react";
 import { FAQ } from "@/lib/site";
 
 export function FaqSection() {
+  const baseId = useId();
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
   return (
     <section
       id="faq"
@@ -18,14 +25,62 @@ export function FaqSection() {
           Straight answers about Easy Breathwork™, safety, and how to book with
           Tamara Edwards.
         </p>
-        <dl className="mt-10 space-y-8">
-          {FAQ.map((item) => (
-            <div key={item.question} className="border-b border-line pb-8 last:border-0">
-              <dt className="text-lg font-semibold text-navy">{item.question}</dt>
-              <dd className="mt-3 leading-relaxed text-navy-soft">{item.answer}</dd>
-            </div>
-          ))}
-        </dl>
+
+        <div className="mt-10 divide-y divide-line border-y border-line">
+          {FAQ.map((item, index) => {
+            const open = openIndex === index;
+            const panelId = `${baseId}-panel-${index}`;
+            const buttonId = `${baseId}-button-${index}`;
+
+            return (
+              <div key={item.question}>
+                <h3>
+                  <button
+                    type="button"
+                    id={buttonId}
+                    aria-expanded={open}
+                    aria-controls={panelId}
+                    onClick={() =>
+                      setOpenIndex((current) =>
+                        current === index ? null : index,
+                      )
+                    }
+                    className="flex w-full items-center justify-between gap-4 py-5 text-left transition-colors hover:text-navy-soft"
+                  >
+                    <span className="text-lg font-semibold text-navy">
+                      {item.question}
+                    </span>
+                    <ChevronDown
+                      size={20}
+                      aria-hidden
+                      className={`shrink-0 text-navy transition-transform duration-300 ease-out ${
+                        open ? "rotate-180" : "rotate-0"
+                      }`}
+                    />
+                  </button>
+                </h3>
+                <div
+                  id={panelId}
+                  role="region"
+                  aria-labelledby={buttonId}
+                  className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+                    open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <p
+                      className={`pb-5 leading-relaxed text-navy-soft transition-opacity duration-300 ${
+                        open ? "opacity-100" : "opacity-0"
+                      }`}
+                    >
+                      {item.answer}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

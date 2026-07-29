@@ -27,10 +27,12 @@ export function Header() {
 
         <nav className="hidden items-center gap-7 lg:flex">
           {NAV.map((item) => {
+            const isHash = item.href.includes("#");
             const active =
-              item.href === "/"
+              !isHash &&
+              (item.href === "/"
                 ? pathname === "/"
-                : pathname.startsWith(item.href);
+                : pathname.startsWith(item.href));
             return (
               <Link
                 key={item.href}

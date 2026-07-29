@@ -1,5 +1,7 @@
 import { FAQ, SITE, absoluteUrl } from "@/lib/site";
 import { LIVE_EVENTS, getEventPath } from "@/lib/events";
+import { LOCATION_REGIONS, placePath, regionPath } from "@/lib/locations";
+import { SEO_SERVICES } from "@/lib/seo-services";
 
 export const dynamic = "force-static";
 
@@ -13,13 +15,28 @@ function buildLlmsTxt() {
       `- [${event.shortTitle}](${absoluteUrl(getEventPath(event.slug))}): ${event.date}. ${event.summary}`,
   ).join("\n");
 
+  const serviceLinks = SEO_SERVICES.map(
+    (service) =>
+      `- [${service.title}](${absoluteUrl(service.path)}): ${service.description}`,
+  ).join("\n");
+
+  const locationBlocks = LOCATION_REGIONS.map((region) => {
+    const places = region.places
+      .map(
+        (place) =>
+          `  - [${place.name}](${absoluteUrl(placePath(region.slug, place.slug))}): ${place.blurb}`,
+      )
+      .join("\n");
+    return `- [${region.name}](${absoluteUrl(regionPath(region.slug))}): ${region.description}\n${places}`;
+  }).join("\n");
+
   return `# Easy Breathwork
 
 > Easy Breathwork™ is a gentle, safe breathing method created by Tamara Edwards to unwind stress, tension, and trauma from the body and restore a multi-layered sense of well-being. The practice is offered through 1:1 and couples sessions, weekly online classes, corporate and group training, and seasonal live events in Marin County, California, and online worldwide.
 
 ## What this site is
 
-This website is the official home of Easy Breathwork™. It explains the method, introduces founder Tamara Edwards, lists ways to learn and book, shares testimonials, archives past live events, and provides a contact form so people can reach Tamara directly. There is no shopping cart. Booking and class registration happen by email, text, or the contact form.
+This website is the official home of Easy Breathwork™. It explains the method, introduces founder Tamara Edwards, lists ways to learn and book, shares testimonials, archives past live events, publishes SEO pages for corporate / organizations / group training, and local pages for the San Francisco Bay Area, Marin, Los Angeles, and New York. There is no shopping cart. Booking happens by email, text, or the contact form.
 
 Easy Breathwork™ is a simple, easy, and safe breathing method. It is not a controlled or forceful technique. It is gentle, nourishing, and natural–a way of breathing into what is, rather than trying to fix or force anything. Through circular breath, habitual layers of protection in the soma and psyche can soften so emotional holding patterns can be accessed, cared for, and digested. Body and mind align in the present moment, allowing the body to clear deeply held tension and fear.
 
@@ -33,6 +50,10 @@ Tamara resisted intense breathwork for years because many styles felt unsafe or 
 
 Contact Tamara at ${SITE.email} or text ${SITE.phone}. Instagram: ${SITE.instagram}.
 
+## Where she works
+
+In-person practice is centered on the San Francisco Bay Area and Marin County (including Mill Valley, Tiburon, and outdoor nature sites). Clients in Los Angeles, New York, and elsewhere typically book remote sessions. Corporate and group trainings are available remotely or in person.
+
 ## How to book
 
 There is no self-checkout on this site. To schedule an intro call, book a session, join a class, arrange corporate training, or inquire about live events:
@@ -41,7 +62,7 @@ There is no self-checkout on this site. To schedule an intro call, book a sessio
 2. Text ${SITE.phone}
 3. Use the contact form on the homepage (${absoluteUrl("/")}#contact)
 
-Mention what you are interested in (1:1 session, couples session, online class, corporate training, or live events) so she can reply with next steps.
+Mention what you are interested in (1:1 session, couples session, online class, corporate training, organizations booking, group training, or live events) so she can reply with next steps.
 
 ## Offerings in detail
 
@@ -51,8 +72,14 @@ Private sessions are available in person in the San Francisco Bay Area and remot
 ### Intro to Easy Breathwork™ (online)
 A weekly group class on Tuesdays from 6:00 to 6:45pm Pacific Time via Zoom. About $30 per class; the first class is free. The class includes guided meditation, a brief introduction to Easy Breathwork, an optional group check-in, practice, and integration tips for daily life. Details: ${absoluteUrl("/bookings")}
 
-### Corporate and group training
-Remote and in-person programs for medical staff, health practitioners, facilitators, therapists, and companies. Programs are customized for length, frequency, and focus to support connection and well-being in organizational culture. Partners have included Beond, Califia, Mountain, Paradigm Talent Agency, Gobbler, and Nue.Life. Details: ${absoluteUrl("/services")}
+### Corporate breathwork
+Customized Easy Breathwork™ programs for companies and teams. Remote and in-person. Page: ${absoluteUrl("/corporate")}
+
+### Organizations booking
+Booking path for clinics, nonprofits, facilitator cohorts, and community organizations. Page: ${absoluteUrl("/organizations")}
+
+### Group training
+Workshops and multi-session group training for private groups, teams, and practitioner cohorts. Page: ${absoluteUrl("/group-training")}
 
 ### Multi-modality healing sessions
 Tune Up: Breath, Soma, Energy–a combination of breathwork with bodywork and energy healing, offered in person in the Bay Area and remotely. Details: ${absoluteUrl("/services")}
@@ -69,9 +96,18 @@ ${faqs}
 - [Home](${absoluteUrl("/")}): Method overview, offerings, FAQ, llms.txt intro, and contact form
 - [About](${absoluteUrl("/about")}): Founder statement from Tamara Edwards
 - [Bookings](${absoluteUrl("/bookings")}): How to contact to book sessions and online classes
-- [Services](${absoluteUrl("/services")}): Corporate training, 1:1 and couples work, multi-modality sessions
+- [Services](${absoluteUrl("/services")}): Overview of all service lines
+- [Locations](${absoluteUrl("/locations")}): Bay Area, Marin, Los Angeles, and New York index
 - [Live Events](${absoluteUrl("/live-events")}): Upcoming inquiry CTA and past gathering archive
 - [Testimonials](${absoluteUrl("/testimonials")}): Quotes from clients and peers including Bonnie Wright, Sibyl Buck, and others
+
+## Service SEO pages
+
+${serviceLinks}
+
+## Location SEO pages
+
+${locationBlocks}
 
 ## Live event pages
 

@@ -4,7 +4,7 @@ export const SITE = {
   tagline: "Easy Breathwork™",
   url:
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
-    "https://easybreathwork.vercel.app",
+    "https://easybreathwork.com",
   description:
     "Easy Breathwork™ is a simple, easy, and safe breathing method to facilitate healing, unwind stress, tension, and trauma from the body, and restore a multi-layered sense of well-being.",
   shortDescription:
@@ -33,8 +33,10 @@ export const NAV = [
   { href: "/about", label: "About" },
   { href: "/bookings", label: "Bookings" },
   { href: "/services", label: "Services" },
+  { href: "/locations", label: "Locations" },
   { href: "/live-events", label: "Live Events" },
   { href: "/testimonials", label: "Testimonials" },
+  { href: "/#faq", label: "FAQ" },
 ] as const;
 
 export const FAQ = [

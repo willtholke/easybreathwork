@@ -42,21 +42,20 @@ Open [http://localhost:3000](http://localhost:3000).
 
 `llms.txt` helps AI tools; it is **not** a Google ranking factor. To appear in Google:
 
-1. Deploy this site and set `NEXT_PUBLIC_SITE_URL` to the public URL
+1. Deploy this site with `NEXT_PUBLIC_SITE_URL=https://easybreathwork.com`
 2. Add the property in [Google Search Console](https://search.google.com/search-console)
 3. Paste the verification code into `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` and redeploy
-4. Submit `https://your-domain/sitemap.xml` under Sitemaps
+4. Submit `https://easybreathwork.com/sitemap.xml` under Sitemaps
 5. Use URL Inspection → Request indexing on the homepage
-6. When cutting over from Squarespace, point `easybreathwork.com` DNS to Vercel and update `NEXT_PUBLIC_SITE_URL` to `https://www.easybreathwork.com`
+6. When cutting over from Squarespace, point `easybreathwork.com` DNS to Vercel
 
 Indexing can take days to weeks for a new host.
 
 ## Deploy (Vercel)
 
-Live: https://easybreathwork.vercel.app
+Canonical URL in code and metadata: https://easybreathwork.com
 
-When ready for DNS cutover, point `easybreathwork.com` to Vercel and update `NEXT_PUBLIC_SITE_URL`.
-
+Preview/staging may still run on a `*.vercel.app` host until DNS is pointed; keep `NEXT_PUBLIC_SITE_URL` set to `https://easybreathwork.com` so sitemaps, OG tags, and copy stay on the real domain.
 ## Pages
 
 | Path | Content |

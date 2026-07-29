@@ -33,13 +33,22 @@ export default function ServicesPage() {
           </p>
           <p>Multiple options for length, frequency, and focus.</p>
           <p className="text-sm text-navy-muted">
-            Have worked with: Beond, Califia, Mountain, Paradigm Talent Agency,
+            Clients: Beond, Califia, Mountain, Paradigm Talent Agency,
             Gobbler.
           </p>
         </div>
-        <div className="mt-8">
+        <div className="mt-8 flex flex-wrap gap-3">
           <ContactCta href="/?subject=Corporate%20%26%20group%20training%20info%20call#contact">
             Schedule a free 15 min info call
+          </ContactCta>
+          <ContactCta href="/corporate" variant="secondary">
+            Corporate page
+          </ContactCta>
+          <ContactCta href="/organizations" variant="secondary">
+            Organizations booking
+          </ContactCta>
+          <ContactCta href="/group-training" variant="secondary">
+            Group training
           </ContactCta>
         </div>
       </section>
@@ -92,6 +101,32 @@ export default function ServicesPage() {
             Contact to book a session
           </ContactCta>
         </div>
+      </section>
+
+      <section className="mt-14 border-t border-line pt-14">
+        <h2 className="text-xl font-semibold text-navy">Explore by focus</h2>
+        <ul className="mt-4 space-y-2 text-navy-soft">
+          <li>
+            <a href="/corporate" className="underline underline-offset-2">
+              Corporate Easy Breathwork™
+            </a>
+          </li>
+          <li>
+            <a href="/organizations" className="underline underline-offset-2">
+              Organizations booking
+            </a>
+          </li>
+          <li>
+            <a href="/group-training" className="underline underline-offset-2">
+              Group training
+            </a>
+          </li>
+          <li>
+            <a href="/locations" className="underline underline-offset-2">
+              Locations (Bay Area, Marin, LA, New York)
+            </a>
+          </li>
+        </ul>
       </section>
     </div>
   );
